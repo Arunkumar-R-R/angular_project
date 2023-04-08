@@ -10,6 +10,7 @@ import { JobStatisticsComponent } from './job-statistics/job-statistics.componen
 import { JobsComponent } from './jobs/jobs.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { FormsModule } from '@angular/forms';
+import { HandleClickOutsideDirective } from './handle-click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     JobStatisticsComponent,
     JobsComponent,
     JobDetailsComponent,
+    HandleClickOutsideDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

@@ -1,5 +1,5 @@
 import { BackendDataService } from './../backend-data.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ViewChild, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, Event } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
@@ -19,10 +19,10 @@ export class JobsComponent implements OnInit, OnDestroy {
   dataSubscription: Subscription;
   currentUrl: string = '';
   showFilter: boolean = false;
+  showFilterbutton:boolean = false;
   showFilterOptionButton: boolean = false;
   selectedFilter = 'Filter';
   selectOptionArray: string[] = [];
-
   selectedFilterOptionValue = undefined;
 
   constructor(
@@ -43,6 +43,7 @@ export class JobsComponent implements OnInit, OnDestroy {
         this.currentUrl = event.url;
       }
       if (this.currentUrl === '/jobs') {
+        this.showFilterbutton = true;
         setTimeout(() => {
           this.jobsDataArray = [];
           this.renderJobsData();
@@ -72,7 +73,7 @@ export class JobsComponent implements OnInit, OnDestroy {
   }
 
   showFilterBox() {
-    this.showFilter = !this.showFilter;
+    this.showFilter = true;
   }
 
   filterOption(event: any) {
@@ -84,8 +85,7 @@ export class JobsComponent implements OnInit, OnDestroy {
     if (this.selectedFilter !== value) {
       this.jobsDataArray = [];
       this.renderJobsData();
-        this.selectedFilterOptionValue = undefined;
-
+      this.selectedFilterOptionValue = undefined;
     }
     const filterOptionId = this.selectedFilter;
     this.jobsData.jobs.map((job: any) => {
@@ -114,6 +114,10 @@ export class JobsComponent implements OnInit, OnDestroy {
     this.selectOptionArray = [];
     this.jobsDataArray = [];
     this.renderJobsData();
+  }
+
+  clickOutside() {
+    this.showFilter = false;
   }
 
   ngOnDestroy(): void {

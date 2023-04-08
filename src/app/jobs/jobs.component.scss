@@ -1,6 +1,6 @@
 .filter-container {
   display: flex;
-  position: relative;
+  flex-flow: row nowrap;
   justify-content: flex-end;
   margin: 0 0 10px 0;
   & .filter-option-container {
@@ -25,29 +25,34 @@
       cursor: pointer;
     }
   }
-  & .filter-button {
-    padding: 6px 8px;
-    background-color: white;
-    border: 0;
-    border-radius: 2px;
-    cursor: pointer;
-    font-weight: 600;
-  }
-  & .filter-box {
-    position: absolute;
-    background-color: white;
-    padding: 10px;
-    top: 30px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  & .filter-button-container {
+    position: relative;
 
-    & .filter-items {
-      padding: 6px;
+    & .filter-button {
+      padding: 6px 8px;
+      background-color: white;
+      border: 0;
       border-radius: 2px;
-      border: 1px solid white;
       cursor: pointer;
-      &:hover {
-        border: 1px solid #91959e;
+      font-weight: 600;
+    }
+    & .filter-box {
+      position: absolute;
+      background-color: white;
+      padding: 10px;
+      top: 30px;
+      right: 0;
+      border-radius: 5px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+      & .filter-items {
+        padding: 6px;
+        border-radius: 2px;
+        border: 1px solid white;
+        cursor: pointer;
+        &:hover {
+          border: 1px solid #91959e;
+        }
       }
     }
   }
