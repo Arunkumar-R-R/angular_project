@@ -1,0 +1,29 @@
+.Primary-details-container {
+  background-color: white;
+  padding: 12px 16px;
+  border-radius: 10px;
+  width: 600px;
+  margin: 0 auto;
+  & h1 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+  & .primary-details {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    & .details {
+      padding: 12px 0;
+      width: 200px;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-start;
+      & .value{
+        color: #57595f;
+        margin: 4px 0 0 0;
+      }
+    }
+  }
+}

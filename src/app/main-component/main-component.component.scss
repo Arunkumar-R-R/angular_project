@@ -1,0 +1,15 @@
+.main {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  & .main-container{
+    overflow-y: scroll;
+    flex: 1 1 auto;
+    padding: 20px;
+    background: rgba(145, 149, 158, 0.2);
+  }
+}
+:host{
+    width: 100%;
+}

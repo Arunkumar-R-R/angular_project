@@ -1,0 +1,35 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  & .job-title {
+    font-weight: 600;
+    cursor: pointer;
+    & a {
+      text-decoration: none;
+      color: black;
+      &:hover {
+        color: #0a91c7;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+th {
+  font-size: 14px;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 400;
+}
+
+.person {
+  padding: 4px;
+}

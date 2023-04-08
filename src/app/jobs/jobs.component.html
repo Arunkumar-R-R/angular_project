@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th *ngFor="let item of displayedColumns">{{item | uppercase}}</th>
+    </tr>
+    <tr *ngFor="let statusBasedData of jobsDataArray">
+        <td>{{statusBasedData.job_id}}</td>
+        <td class="job-title">
+          <a [routerLink]="['/jobs',statusBasedData.job_id,'details']">{{statusBasedData.job_title|titlecase}}</a></td>
+        <td>
+          <div class="person" *ngFor="let person of statusBasedData.assigned_to">
+            {{person | titlecase}}
+          </div>
+        </td>
+        <td>{{statusBasedData.status|titlecase}}</td>
+    </tr>
+</table>

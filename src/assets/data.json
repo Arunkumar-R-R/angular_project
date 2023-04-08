@@ -1,0 +1,40 @@
+{
+  "jobs": [
+    {
+      "job_id": 1,
+      "job_title":"AC Maintenance",
+      "status": "CONFIRMED",
+      "assigned_to": ["raghav", "vijay"]
+    },
+    {
+      "job_id": 2,
+      "job_title": "AC Maintenance",
+      "status": "ON_MY_WAY",
+      "assigned_to": ["vijay"]
+    },
+    {
+      "job_id": 3,
+      "job_title": "AC Maintenance",
+      "status": "CONFIRMED",
+      "assigned_to": ["ranjith"]
+    },
+    {
+      "job_id": 4,
+      "job_title": "AC Maintenance",
+      "status": "STARTED",
+      "assigned_to": ["raghav"]
+    },
+    {
+      "job_id": 5,
+      "job_title": "Radio Installation",
+      "status": "STARTED",
+      "assigned_to": ["ranjith"]
+    },
+    {
+      "job_id": 6,
+      "job_title": "Radio Installation",
+      "status": "COMPLETED",
+      "assigned_to": ["vijay"]
+    }
+  ]
+}

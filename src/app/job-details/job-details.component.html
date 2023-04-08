@@ -1,0 +1,11 @@
+<div class="Primary-details-container">
+  <div class="title">
+    <h1>Primary Details</h1>
+  </div>
+  <div class="primary-details">
+    <div *ngFor="let job of primaryJobData | keyvalue" class="details">
+      <span>{{job.key}}</span>
+      <span class="value">{{job.value}}</span>
+    </div>
+  </div>
+</div>
