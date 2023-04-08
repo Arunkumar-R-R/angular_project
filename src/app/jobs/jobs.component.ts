@@ -1,54 +1,59 @@
 import { BackendDataService } from './../backend-data.service';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, Event } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-jobs',
   templateUrl: './jobs.component.html',
   styleUrls: ['./jobs.component.scss'],
 })
-export class JobsComponent {
-  displayedColumns: string[] = [
-    'id',
-    'job title',
-    'employee assigned',
-    'status',
-  ];
+export class JobsComponent implements OnInit, OnDestroy {
+  jobAttributes: string[] = ['id', 'job title', 'employee assigned', 'status'];
+  selectOptionId: string[] = ['job_title', 'status'];
   status: string = '';
   jobsDataArray = <any>[];
   jobsData: any = {};
   currentRoute: String = '';
   urlSubcription: Subscription;
+  dataSubscription: Subscription;
   currentUrl: string = '';
+  showFilter: boolean = false;
+  showFilterOptionButton: boolean = false;
+  selectedFilter = 'Filter';
+  selectOptionArray: string[] = [];
+
+  selectedFilterOptionValue = undefined;
 
   constructor(
     private route: ActivatedRoute,
     private backendDataService: BackendDataService,
     private router: Router
   ) {
-    this.urlSubcription = this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationEnd) {
-        this.currentUrl = event.url;
-      }
-      if (this.currentUrl === '/jobs') {
-         this.jobsDataArray = [];
-         this.renderJobsData();
-       }
-    });
-  }
-
-  ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      this.status = params['status'];
-    });
-    this.backendDataService.get().subscribe((data) => {
+    this.dataSubscription = this.backendDataService.get().subscribe((data) => {
       this.jobsData = data;
       if (this.currentUrl === '/jobs') {
         this.renderJobsData();
       } else {
         this.renderStatusBasedData();
       }
+    });
+    this.urlSubcription = this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl = event.url;
+      }
+      if (this.currentUrl === '/jobs') {
+        setTimeout(() => {
+          this.jobsDataArray = [];
+          this.renderJobsData();
+        }, 1000);
+      }
+    });
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.status = params['status'];
     });
   }
 
@@ -66,7 +71,53 @@ export class JobsComponent {
     });
   }
 
+  showFilterBox() {
+    this.showFilter = !this.showFilter;
+  }
+
+  filterOption(event: any) {
+    this.selectOptionArray = [];
+    this.showFilter = false;
+    this.showFilterOptionButton = true;
+    let value = event.target.innerHTML;
+    this.selectedFilter = value.trim();
+    if (this.selectedFilter !== value) {
+      this.jobsDataArray = [];
+      this.renderJobsData();
+        this.selectedFilterOptionValue = undefined;
+
+    }
+    const filterOptionId = this.selectedFilter;
+    this.jobsData.jobs.map((job: any) => {
+      if (job[filterOptionId]) {
+        if (this.selectOptionArray.indexOf(job[filterOptionId]) < 0) {
+          this.selectOptionArray.push(job[filterOptionId]);
+        }
+      }
+    });
+  }
+
+  selectOption(event: any) {
+    let selectedValue = event.target.value;
+    this.jobsDataArray = [];
+    this.jobsData.jobs.map((job: any) => {
+      const trimmedValue = selectedValue.trim();
+      if (Object.values(job).indexOf(trimmedValue) > -1) {
+        this.jobsDataArray.push(job);
+      }
+    });
+  }
+
+  resetFilter() {
+    this.showFilterOptionButton = false;
+    this.selectedFilter = 'Filter';
+    this.selectOptionArray = [];
+    this.jobsDataArray = [];
+    this.renderJobsData();
+  }
+
   ngOnDestroy(): void {
     this.urlSubcription.unsubscribe();
+    this.dataSubscription.unsubscribe();
   }
 }

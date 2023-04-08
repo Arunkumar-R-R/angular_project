@@ -9,7 +9,7 @@ import { MainComponentComponent } from './main-component/main-component.componen
 import { JobStatisticsComponent } from './job-statistics/job-statistics.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
-import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { MatTableModule } from '@angular/material/table';
     JobsComponent,
     JobDetailsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MatTableModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

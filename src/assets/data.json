@@ -2,7 +2,7 @@
   "jobs": [
     {
       "job_id": 1,
-      "job_title":"AC Maintenance",
+      "job_title": "AC Maintenance",
       "status": "CONFIRMED",
       "assigned_to": ["raghav", "vijay"]
     },
