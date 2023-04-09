@@ -1,7 +1,7 @@
 <div class="job-statistics-container">
     <h6 class="job-statistics-card-title">JOB STATISTICS</h6>
-    <div class="job-card-container"> 
-            <div *ngFor="let item of desiredOutput.count_by_status | keyvalue" class="job-card" routerLink="/jobs" [queryParams]="{status:item.key}">
+    <div class="job-card-container">
+            <div *ngFor="let item of count_by_status | keyvalue" class="job-card" routerLink="/jobs" [queryParams]="{status:item.key}">
                 <div class="job-status-name">
                     {{item.key | titlecase}}
                 </div>

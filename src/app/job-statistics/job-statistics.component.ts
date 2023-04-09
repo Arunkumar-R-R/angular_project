@@ -1,17 +1,9 @@
 import { Component } from '@angular/core';
 import { BackendDataService } from '../backend-data.service';
 
-type userDetails = {
-  name: string[];
-  count: number;
-};
-
-type desiredOutput = {
-  count_by_status: {
-    [key: string]: number;
-  };
-  count_by_user: userDetails[];
-};
+type count_by_Status = {
+      [key: string]: number;
+}
 
 @Component({
   selector: 'app-job-statistics',
@@ -21,10 +13,7 @@ type desiredOutput = {
 export class JobStatisticsComponent {
   jobsData: any = {};
   statusArray = <any>[];
-  desiredOutput: desiredOutput = {
-    count_by_status: {},
-    count_by_user: [],
-  };
+  count_by_status: count_by_Status = {};
 
   constructor(private backendDataService: BackendDataService) {}
 
@@ -44,13 +33,12 @@ export class JobStatisticsComponent {
       }
     });
     this.statusArray.map((status: string) => {
-      this.desiredOutput.count_by_status[status] = 0;
+      this.count_by_status[status] = 0;
       this.jobsData.jobs.map((job: any) => {
         if (job.status === status) {
-          this.desiredOutput.count_by_status[status] += 1;
+          this.count_by_status[status] += 1;
         }
       });
     });
-    console.log(this.desiredOutput, 'desired output');
   }
 }

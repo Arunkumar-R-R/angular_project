@@ -28,7 +28,6 @@ export class JobDetailsComponent {
   }
   renderJobsData() {
     this.jobsData.jobs.map((job: any) => {
-      console.log(typeof this.jobsId, 'primary');
       if (job.job_id === this.jobsId) {
         this.primaryJobData = job;
       }
